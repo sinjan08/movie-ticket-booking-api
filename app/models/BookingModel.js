@@ -11,17 +11,26 @@ const bookingSchema = mongoose.Schema({
     ref: "Movies",
     required: true
   },
+  theater_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Theaters",
+    required: true
+  },
   number_of_seats: {
     type: Number,
     required: true,
   },
-  show_time: {
-    type: Date,
+  show_time_id: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true
   },
   price: {
     type: Number,
     required: true
+  },
+  is_cancelled: {
+    type: Boolean,
+    default: false,
   },
   is_deleted: {
     type: Boolean,

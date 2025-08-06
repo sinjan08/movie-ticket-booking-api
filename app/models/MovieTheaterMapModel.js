@@ -25,6 +25,10 @@ const movieTheaterMapSchema = mongoose.Schema({
       end_time: {
         type: Date,
         required: true
+      },
+      price: {
+        type: Number,
+        required: true
       }
     }
   ],

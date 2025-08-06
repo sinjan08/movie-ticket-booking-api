@@ -57,19 +57,20 @@ class AuthController {
         address,
         profile_image
       });
+
       if (!newUser) {
         return apiResponse(res, false, HTTP_STATUS.SERVER_ERROR, "Failed to create user");
       }
       // creating user role map
       const userRoleMap = await UserRoleMap.create({
-        user_id: newUser[0]?._id,
+        user_id: newUser?._id,
         role_id: role._id
       });
       if (!userRoleMap) {
         return apiResponse(res, false, HTTP_STATUS.SERVER_ERROR, "Failed to create user role map");
       }
       // sending success mail
-      await sendSignupMail({ id: newUser[0]?._id, name, email });
+      await sendSignupMail({ id: newUser?._id, name, email });
       // returning final response
       return apiResponse(res, true, HTTP_STATUS.OK, "Signup successfully");
     } catch (error) {
@@ -96,6 +97,7 @@ class AuthController {
       // verifying token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const { id, email, name } = decoded;
+
       // checking user exists or not
       const user = await Users.findOne({ _id: id });
       if (!user) {

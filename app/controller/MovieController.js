@@ -291,7 +291,8 @@ class MovieController {
               end_time: "$movietheatermaps.show_time.end_time",
               theater_id: "$theater._id",
               theater_name: "$theater.name",
-              theater_location: "$theater.location"
+              theater_location: "$theater.location",
+              price: "$movietheatermaps.show_time.price"
             }
           }
         },

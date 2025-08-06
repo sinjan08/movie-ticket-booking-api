@@ -46,6 +46,10 @@ const assignMovieTheaterSchema = Joi.object({
         'any.required': 'Start time is required',
         'date.base': 'Start time must be a date',
       }),
+      price: Joi.number().required().messages({
+        'any.required': 'Price is required',
+        'number.base': 'Price must be a number',
+      }),
     })
   ).min(1).required().messages({
     'any.required': 'Show time is required',
