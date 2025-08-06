@@ -2,7 +2,10 @@ const Bookings = require("../models/BookingModel");
 const Movies = require("../models/MovieModel");
 const MovieTheaterMap = require("../models/MovieTheaterMapModel");
 const Screens = require("../models/ScreenModel");
+const Theaters = require("../models/TheatreModel");
+const Users = require("../models/UserModel");
 const { bookingSchema } = require("../rules/bookingRules");
+const { sendBookingConfirmationMail, sendBookingCancellationMail } = require("../service/booking.mail");
 const { apiResponse, HTTP_STATUS } = require("../utils/response.helper");
 const { fetchMovies } = require("./MovieController");
 const mongoose = require("mongoose");
@@ -179,7 +182,7 @@ class BookingController {
       const selectedShowTime = movieShowTime.show_time.find(
         st => st._id.toString() === show_time_id.toString()
       );
-
+      console.log("selectedShowTime", selectedShowTime)
       if (!selectedShowTime) {
         return apiResponse(res, false, HTTP_STATUS.BAD_REQUEST, "Exact show time not found");
       }
@@ -217,6 +220,22 @@ class BookingController {
       if (!newBooking) {
         return apiResponse(res, false, HTTP_STATUS.BAD_REQUEST, "Booking failed");
       }
+
+      // getting user details
+      const user = await Users.findOne({ _id: user_id });
+      // getting theater details
+      const theater = await Theaters.findOne({ _id: theater_id });
+      // getting screen details
+      const screen = await Screens.findOne({ _id: selectedShowTime.screen_id });
+      // sending booking confirmation mail
+      await sendBookingConfirmationMail(user, {
+        movieTitle: movie.title,
+        theaterName: theater.name,
+        screen: screen.name,
+        seats: no_of_tickets,
+        date: new Date(newBooking.createdAt).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        time: new Date(selectedShowTime.start_time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+      });
 
       // 14. Return success response with new booking details
       return apiResponse(res, true, HTTP_STATUS.OK, "Booking successful", newBooking);
@@ -266,6 +285,33 @@ class BookingController {
       if (!updatedBooking) {
         return apiResponse(res, false, HTTP_STATUS.BAD_REQUEST, "Failed to cancel booking");
       }
+      // getting user id
+      const user_id = req.user.id;
+      // getting user details
+      const user = await Users.findOne({ _id: user_id });
+      // getting movie details
+      const movie = await Movies.findOne({ _id: booking.movie_id });
+      // getting theater details
+      const theater = await Theaters.findOne({ _id: booking.theater_id });
+      // getting show time details
+      const movieShowTime = await MovieTheaterMap.findOne({ "show_time._id": booking.show_time_id });
+      // 6. Get the specific show_time object using its _id
+      const selectedShowTime = movieShowTime.show_time.find(
+        st => st._id.toString() === booking.show_time_id.toString()
+      );
+      // getting screen details
+      const screen = await Screens.findOne({ _id: selectedShowTime.screen_id });
+      // getting no of tickets
+      const no_of_tickets = booking.number_of_seats;
+      // sending cancelled email
+      await sendBookingCancellationMail(user, {
+        movieTitle: movie.title,
+        theaterName: theater.name,
+        screen: screen.name,
+        seats: no_of_tickets,
+        date: new Date(booking.createdAt).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        time: new Date(selectedShowTime.start_time).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }),
+      })
       // returning response
       return apiResponse(res, true, HTTP_STATUS.OK, "Booking cancelled successfully", updatedBooking);
     } catch (error) {

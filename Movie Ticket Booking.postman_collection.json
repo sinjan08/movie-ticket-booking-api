@@ -1,0 +1,738 @@
+{
+	"info": {
+		"_postman_id": "c315ee5c-e481-459c-b33f-9bde0407eedc",
+		"name": "Movie Ticket Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24503405"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sinjan Chakraborty",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sinjan@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Sinjan@1994",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Kolkata",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "688efdaca394f06e27527cf2",
+									"type": "text"
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": "/E:/Images for testing/images (3).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/auth/signup",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sinjan.admin@yopmail.com\",\r\n    \"password\": \"Sinjan@1994\"\r\n}\r\n// {\r\n//     \"email\": \"sinjan.user@yopmail.com\",\r\n//     \"password\": \"Sinjan@1994\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/auth/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/auth/profile",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Sinjan Admin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sinjan.admin1@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Baguiati, Kolkata",
+									"type": "text"
+								},
+								{
+									"key": "profile_image",
+									"type": "file",
+									"src": "/E:/Images for testing/images.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/auth/update",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"auth",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Settings",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/settings/role/create",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"settings",
+								"role",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/settings/role",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"settings",
+								"role"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Create Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Khadaan",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Khadaan is a 2024 Indian Bengali-language action thriller film written and directed by Soojit Rino Dutta",
+									"type": "text"
+								},
+								{
+									"key": "genre",
+									"value": "Action/Drama",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "Bengali",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "138",
+									"type": "text"
+								},
+								{
+									"key": "cast",
+									"value": "[{\"name\":\"Dev\", \"role\":\"Shyam Mahato\"},{\"name\":\"Jisshu Sengupta\", \"role\":\"Mohan Das\"},{\"name\":\"Idhika Paul\", \"role\":\"Latika\"},{\"name\":\"Barkha Bisht\", \"role\":\"Jamuna\"},{\"name\":\"Anirban Chakrabarti\",\"role\":\"Balai Mandi\"}]",
+									"type": "text"
+								},
+								{
+									"key": "director",
+									"value": "Soojit Dutta",
+									"type": "text"
+								},
+								{
+									"key": "release_date",
+									"value": "2024-12-20",
+									"type": "text"
+								},
+								{
+									"key": "poster",
+									"type": "file",
+									"src": "/E:/Images for testing/images (6).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/movie/create",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"movie",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mission: Impossible – Dead Reckoning Part 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Ethan Hunt and the IMF team must track down a terrifying new weapon that threatens all of humanity if it falls into the wrong hands. With control of the future and the fate of the world at stake, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing can matter more than the mission -- not even the lives of those he cares about most.",
+									"type": "text"
+								},
+								{
+									"key": "genre",
+									"value": "Action/Thriller",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "English",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "163",
+									"type": "text"
+								},
+								{
+									"key": "cast",
+									"value": "[{\"name\":\"Hayley Atwell\", \"role\":\"Grace\"},{\"name\":\"Vanessa Kirby\", \"role\":\"Alanna Mitsopolis\"},{\"name\":\"Tom Cruise\", \"role\":\"Ethan Hunt\"},{\"name\":\"Rebecca Ferguson\", \"role\":\"Ilsa Faust\"},{\"name\":\"Pom Klementieff\", \"role\":\"Paris\"},{\"name\":\"Esai Morales\", \"role\":\"Gabriel\"},{\"name\":\"Yennis Cheung\", \"role\":\"Dior\"},{\"name\":\"Mariela Garriga\", \"role\":\"Marie\"}]",
+									"type": "text"
+								},
+								{
+									"key": "director",
+									"value": "Christopher McQuarrie",
+									"type": "text"
+								},
+								{
+									"key": "release_date",
+									"value": "2023-07-12",
+									"type": "text"
+								},
+								{
+									"key": "poster",
+									"type": "file",
+									"src": "/E:/Images for testing/Mission-_Impossible_–_Dead_Reckoning_Part_One_poster.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/movie/6890974f48932dd8d0b18412",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"movie",
+								"6890974f48932dd8d0b18412"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/movie/68918bdd9dcc4847179c0255",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"movie",
+								"68918bdd9dcc4847179c0255"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Movies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Mission: Impossible – Dead Reckoning Part 1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Ethan Hunt and the IMF team must track down a terrifying new weapon that threatens all of humanity if it falls into the wrong hands. With control of the future and the fate of the world at stake, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing can matter more than the mission -- not even the lives of those he cares about most.",
+									"type": "text"
+								},
+								{
+									"key": "genre",
+									"value": "Action/Thriller",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "English",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "163",
+									"type": "text"
+								},
+								{
+									"key": "cast",
+									"value": "[{\"name\":\"Ibrahim Ali Khan\", \"role\":\"Harman\"},{\"name\":\"Kajol Devgan\", \"role\":\"Mausin\"}]",
+									"type": "text"
+								},
+								{
+									"key": "director",
+									"value": "Christopher McQuarrie",
+									"type": "text"
+								},
+								{
+									"key": "release_date",
+									"value": "2023-07-12",
+									"type": "text"
+								},
+								{
+									"key": "poster",
+									"type": "file",
+									"src": "/E:/Images for testing/images (5).jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/movie",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show times",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/movie/showtimes",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"movie",
+								"showtimes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Theater",
+			"item": [
+				{
+					"name": "Create Theater",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Priya\",\r\n    \"location\": \"Rashbihari Avenue\",\r\n    \"screens\": [\r\n        {\r\n            \"screen_name\": \"Premiere Hall\",\r\n            \"seats\": 120\r\n        },\r\n        {\r\n            \"screen_name\": \"Hall II\",\r\n            \"seats\": 100\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/theater/create",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"theater",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Screens by Theater",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/theater/689193cd0db373d4318dab69/screens",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"theater",
+								"689193cd0db373d4318dab69",
+								"screens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Theaters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/theater",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"theater"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"theater_id\": \"689193cd0db373d4318dab69\",\r\n    \"movie_id\": \"6890974f48932dd8d0b18412\",\r\n    \"show_time\": [\r\n        {\r\n            \"screen_id\": \"689193cd0db373d4318dab75\",\r\n            \"start_time\": \"2025-08-05 10:00\",\r\n            \"price\": 150\r\n        },\r\n        {\r\n            \"screen_id\": \"689193cd0db373d4318dab72\",\r\n            \"start_time\": \"2025-08-05 14:00\",\r\n            \"price\": 200\r\n        },\r\n        {\r\n            \"screen_id\": \"689193cd0db373d4318dab6f\",\r\n            \"start_time\": \"2025-08-05 18:00\",\r\n            \"price\": 250\r\n        },\r\n        {\r\n            \"screen_id\": \"689193cd0db373d4318dab6f\",\r\n            \"start_time\": \"2025-08-05 21:00\",\r\n            \"price\": 250\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/theater/assign-movie",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"theater",
+								"assign-movie"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Get Movie List with Shows",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/booking/movie/6891a38170da5e315ead8876",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"booking",
+								"movie",
+								"6891a38170da5e315ead8876"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movie_id\": \"6891a38170da5e315ead8876\",\r\n    \"theater_id\": \"68919254d644c8af19f8217f\",\r\n    \"show_time_id\": \"6891b33be961f9d5a96ef490\",\r\n    \"no_of_tickets\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/booking",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancel Booking",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/booking/6893533cf734d49e420375e2",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"booking",
+								"6893533cf734d49e420375e2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/booking/history",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"booking",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "Total Booking of a movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/report/movie",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"report",
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Booking of theater",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/report/theater",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"report",
+								"theater"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Booking Summary to user email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/report/user",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"report",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:5500/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTA0MzMzYzJjOTc1OWQ1MGZiMGE3YyIsImVtYWlsIjoic2luamFuLmFkbWluQHlvcG1haWwuY29tIiwibmFtZSI6IlNpbmphbiBDaGFrcmFib3J0eSIsInJvbGVfaWQiOiI2ODhlZmRiOWEzOTRmMDZlMjc1MjdjZjQiLCJyb2xlX25hbWUiOiJBZG1pbiIsImlhdCI6MTc1NDI4NTk0NSwiZXhwIjoxNzU0MzcyMzQ1fQ._MU1ARw2bQcxmxBEWfrpC2e31eGgqUqo4Qx30UMWNBE",
+			"type": "string"
+		}
+	]
+}

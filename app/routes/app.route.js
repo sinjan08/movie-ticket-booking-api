@@ -14,6 +14,6 @@ router.use('/auth', authRoutes);
 router.use('/movie', authentication, movieRoutes);
 router.use('/theater', authentication, theaterRoutes);
 router.use('/booking', authentication, bookingRoutes);
-router.use('/report', authentication, authorization, reportRoutes);
+router.use('/report', authentication, reportRoutes);
 
 module.exports = router;
